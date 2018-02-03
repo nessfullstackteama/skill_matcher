@@ -1,0 +1,62 @@
+version: '3'
+services:
+  jenkins:
+    image: jenkins
+    volumes:
+      - .\jenkins\var\jenkins_home:/var/jenkins_home:rw
+    environment:
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - LANG=C.UTF-8
+      - JAVA_HOME=/docker-java-home
+      - JAVA_VERSION=8u151
+      - JAVA_DEBIAN_VERSION=8u151-b12-1~deb9u1
+      - CA_CERTIFICATES_JAVA_VERSION=20170531+nmu1
+      - JENKINS_HOME=/var/jenkins_home
+      - JENKINS_SLAVE_AGENT_PORT=50000
+      - TINI_VERSION=0.14.0
+      - TINI_SHA=6c41ec7d33e857d4779f14d9c74924cab0c7973485d2972419a3b7c7620ff5fd
+      - JENKINS_VERSION=2.60.3
+      - JENKINS_UC=https://updates.jenkins.io
+      - JENKINS_UC_EXPERIMENTAL=https://updates.jenkins.io/experimental
+      - COPY_REFERENCE_FILE_LOG=/var/jenkins_home/copy_reference_file.log
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    depends_on:
+      - registry
+  registry:
+    image: registry:latest
+    environment:
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - REGISTRY_HTTP_ADDR=0.0.0.0:5001
+  nginx:
+    image: nginx:latest
+    environment:
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - NGINX_VERSION=1.13.8-1~stretch
+      - NJS_VERSION=1.13.8.0.1.15-1~stretch
+    ports:
+      - 8000:80
+  mysql:
+    image: mysql:latest
+    volumes:
+      - .\mysql\var\lib\mysql:/var/lib/mysql:rw
+    environment:
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - GOSU_VERSION=1.7
+      - MYSQL_MAJOR=5.7
+      - MYSQL_VERSION=5.7.20-1debian8
+      - MYSQL_ROOT_PASSWORD=N355Full5t4ck
+      - MYSQL_DATABASE=skill_matcher
+    ports:
+      - "32768:3306"
+#  node:
+#    #image: TODO
+#    command:
+#    node /usr/src/app/start.js 
+#    environment:
+#     - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+#     - NODE_VERSION=9.2.0
+#     - YARN_VERSION=1.3.2
+#    depends_on:
+#     - mysql
