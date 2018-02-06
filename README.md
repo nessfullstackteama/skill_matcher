@@ -3,14 +3,14 @@
 Multi user web application – each user has its own profile.
 User can easily add to own portfolio certain skills (from variety of full stack layers and/or tools
 
-# Architecure
+## Architecure
 - Front-end: React
 - Back-end: NodeJS
 - Database: MySQL
 - Application server: Nginx
 - DevOps: Docker/Jenkins
 
-# Docker
+## Docker
 cd to the folder containing the `docker-compose.yml` file. In Windows environment, the folder must contain the `.env` file with variable `COMPOSE_CONVERT_WINDOWS_PATHS=1`.
 #### Command to run all containers
 ```
