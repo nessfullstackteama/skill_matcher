@@ -1,0 +1,31 @@
+version: '3'
+services:
+  jenkins:
+    image: jenkins
+    volumes:
+      - .\jenkins\var\jenkins_home:/var/jenkins_home:rw
+    environment:
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - LANG=C.UTF-8
+      - JAVA_HOME=/docker-java-home
+      - JAVA_VERSION=8u151
+      - JAVA_DEBIAN_VERSION=8u151-b12-1~deb9u1
+      - CA_CERTIFICATES_JAVA_VERSION=20170531+nmu1
+      - JENKINS_HOME=/var/jenkins_home
+      - JENKINS_SLAVE_AGENT_PORT=50000
+      - TINI_VERSION=0.14.0
+      - TINI_SHA=6c41ec7d33e857d4779f14d9c74924cab0c7973485d2972419a3b7c7620ff5fd
+      - JENKINS_VERSION=2.60.3
+      - JENKINS_UC=https://updates.jenkins.io
+      - JENKINS_UC_EXPERIMENTAL=https://updates.jenkins.io/experimental
+      - COPY_REFERENCE_FILE_LOG=/var/jenkins_home/copy_reference_file.log
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    depends_on:
+      - registry
+  registry:
+    image: registry:latest
+    environment:
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - REGISTRY_HTTP_ADDR=0.0.0.0:5001
