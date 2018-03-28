@@ -1,0 +1,6 @@
+jenkins/*
+jobs/*
+!jobs/*/
+jobs/*/*
+!jobs/*/config.xml
+!.gitignore

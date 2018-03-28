@@ -1,0 +1,14 @@
+version: '3'
+services:
+  jenkins-master:
+    build: .
+    image: jenkins/jenkins:latest
+    environment:
+      - JENKINS_USER=admin
+      - JENKINS_PASS=admin
+    volumes:
+      - .\jenkins\var\jenkins_home:/var/jenkins_home:rw
+      - .\jobs:/var/jenkins_home/jobs:rw
+    ports:
+      - "8080:8080"
+      - "50000:50000"
