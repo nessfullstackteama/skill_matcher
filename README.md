@@ -8,3 +8,6 @@ docker-compose up -d
 ```
 docker-compose up -d jenkins
 ```
+
+#### Jenkins/Docker
+![Jenkins Docker plugin](/jenkins-docker.png)
