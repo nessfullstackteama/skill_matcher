@@ -8,6 +8,9 @@ import com.nirima.jenkins.plugins.docker.launcher.AttachedDockerComputerLauncher
 import io.jenkins.docker.connector.DockerComputerAttachConnector
 import hudson.model.FreeStyleProject
 
+import hudson.model.Node.Mode
+import hudson.slaves.*
+
 def env = System.getenv()
 def jenkins = Jenkins.getInstance()
 
@@ -29,7 +32,7 @@ jenkins.setNumExecutors(2)
 
 /* Set up Docker plugin*/
 // parameters
-/*
+
 def dockerTemplateBaseParameters = [
   bindAllPorts:       false,
   bindPorts:          '',
@@ -117,10 +120,10 @@ jenkins.clouds.add(dockerCloud)
  
 // save current Jenkins state to disk
 jenkins.save()
-*/
 
 /* Create job */
 def job = jenkins.createProject(FreeStyleProject, 'skill_matcher')
+
 job.buildersList.add(new hudson.tasks.Shell('echo hello world1'))
 job.save()
 
@@ -134,3 +137,17 @@ job.save()
 //jenkins.save()
 
 //jenkins.reload()
+
+/*
+DumbSlave dumb = new DumbSlave(
+  'agent',
+  'docker slave',
+  '/home/jenkins/',
+  '2',
+  Mode.EXCLUSIVE,
+  '',
+  new JNLPLauncher(true),
+  RetentionStrategy.INSTANCE)
+
+jenkins.addNode(dumb)
+*/

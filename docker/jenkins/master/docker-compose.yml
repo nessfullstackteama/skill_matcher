@@ -10,8 +10,10 @@ services:
       - JENKINS_USER=admin
       - JENKINS_PASS=admin
     volumes:
-      - .\jenkins\var\jenkins_home:/var/jenkins_home:rw
+#      - .\jenkins\var\jenkins_home:/var/jenkins_home:rw
 #      - .\jobs:/var/jenkins_home/jobs:rw
+      - /usr/local/bin/docker:/bin/docker
+      - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "8080:8080"
       - "50000:50000"
