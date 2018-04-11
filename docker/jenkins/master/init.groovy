@@ -11,6 +11,15 @@ import hudson.model.FreeStyleProject
 import hudson.model.Node.Mode
 import hudson.slaves.*
 
+import hudson.model.Item
+import hudson.util.PersistedList
+import jenkins.branch.*
+import jenkins.plugins.git.*
+import org.jenkinsci.plugins.workflow.multibranch.*
+import com.cloudbees.hudson.plugins.folder.*
+import org.jenkinsci.plugins.workflow.job.WorkflowJob
+import com.coravy.hudson.plugins.github.GithubProjectProperty
+
 def env = System.getenv()
 def jenkins = Jenkins.getInstance()
 
@@ -32,7 +41,7 @@ jenkins.setNumExecutors(2)
 
 /* Set up Docker plugin*/
 // parameters
-
+/*
 def dockerTemplateBaseParameters = [
   bindAllPorts:       false,
   bindPorts:          '',
@@ -120,23 +129,11 @@ jenkins.clouds.add(dockerCloud)
  
 // save current Jenkins state to disk
 jenkins.save()
-
-/* Create job */
-def job = jenkins.createProject(FreeStyleProject, 'skill_matcher')
-
-job.buildersList.add(new hudson.tasks.Shell('echo hello world1'))
-job.save()
+*/
 
 
-//def scm = new GitSCM("https://github.com/nessfullstackteama/skill_matcher.git")
-//scm.branches = [new BranchSpec("*/dev")];
+//WorkflowJob job = jenkins.createProject(WorkflowJob, 'skill_matcher_pipeline')
 
-//def flowDefinition = new org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition(scm, "Jenkinsfile")
-//def job = new org.jenkinsci.plugins.workflow.job.WorkflowJob(jenkins, "skill_matcher")
-//job.definition = flowDefinition
-//jenkins.save()
-
-//jenkins.reload()
 
 /*
 DumbSlave dumb = new DumbSlave(
