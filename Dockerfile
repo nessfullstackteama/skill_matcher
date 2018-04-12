@@ -1,5 +1,5 @@
 # use a node base image
-FROM node:7-onbuild
+FROM node:alpine
 
 # set maintainer
 LABEL maintainer "stefan.panko@ness.com"
