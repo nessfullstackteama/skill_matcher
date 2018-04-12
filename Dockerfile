@@ -4,6 +4,10 @@ FROM node:alpine
 # set maintainer
 LABEL maintainer "stefan.panko@ness.com"
 
+WORKDIR /app
+COPY . .
+RUN npm install
+
 # set a health check
 HEALTHCHECK --interval=5s \
             --timeout=5s \
@@ -11,3 +15,5 @@ HEALTHCHECK --interval=5s \
 
 # tell docker what port to expose
 EXPOSE 8000
+
+CMD ["node", "main.js"]

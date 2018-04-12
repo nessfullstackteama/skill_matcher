@@ -32,13 +32,5 @@ node {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
         }*/
-        
-        
-    }
-
-    stage('Run image') {
-        docker.image("nessfullstackteama/skillmatcher:${env.BUILD_NUMBER}").withRun('-p 8000:8000') {
-            
-        }
     }
 }
