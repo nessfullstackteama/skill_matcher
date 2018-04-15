@@ -1,7 +1,7 @@
 {
   "name": "nessfullstackteama-skillmatcher",
   "version": "1.0.0",
-  "description": "A Hello World HTTP server",
+  "description": "Skill Matcher REST API",
   "main": "server.js",
   "scripts": {
     "test": "node test.js",
