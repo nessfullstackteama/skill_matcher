@@ -11,7 +11,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("nessfullstackteama/skillmatcher:${env.BUILD_NUMBER}")
+        app = docker.build("nessfullstackteama/skillmatcher:0.1.${env.BUILD_NUMBER}")
     }
 
     stage('Test image') {
