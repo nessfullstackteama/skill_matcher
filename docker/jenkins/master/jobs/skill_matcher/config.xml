@@ -1,5 +1,6 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.18">
+  <actions/>
   <description>Ness Full Stack Developer program project</description>
   <displayName>Skill Matcher</displayName>
   <keepDependencies>false</keepDependencies>
@@ -24,9 +25,17 @@
       </branches>
       <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
       <submoduleCfg class="list"/>
-      <extensions/>
+      <extensions>
+        <hudson.plugins.git.extensions.impl.SparseCheckoutPaths>
+          <sparseCheckoutPaths>
+            <hudson.plugins.git.extensions.impl.SparseCheckoutPath>
+              <path>backend/</path>
+            </hudson.plugins.git.extensions.impl.SparseCheckoutPath>
+          </sparseCheckoutPaths>
+        </hudson.plugins.git.extensions.impl.SparseCheckoutPaths>
+      </extensions>
     </scm>
-    <scriptPath>Jenkinsfile</scriptPath>
+    <scriptPath>backend/Jenkinsfile</scriptPath>
     <lightweight>true</lightweight>
   </definition>
   <triggers/>

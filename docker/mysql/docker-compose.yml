@@ -1,0 +1,11 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:latest
+    volumes:
+      - .\mysql\var\lib\mysql:/var/lib/mysql:rw
+    environment:
+      - MYSQL_ROOT_PASSWORD=N355Full5t4ck
+      - MYSQL_DATABASE=skill_matcher
+    ports:
+      - "32768:3306"
