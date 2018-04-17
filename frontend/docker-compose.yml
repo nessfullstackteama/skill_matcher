@@ -1,0 +1,9 @@
+frontend:
+  image: nginx:alpine
+  volumes: 
+    - .\app:/usr/share/nginx/html/
+  ports:
+    - "8888:80"
+  environment:
+    - NGINX_HOST=skillmatcher.ness
+    - NGINX_PORT=8888

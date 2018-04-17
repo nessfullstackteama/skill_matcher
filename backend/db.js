@@ -1,16 +1,16 @@
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-    host: '192.168.99.100',
-    port: 32769,
-    user: 'root',
-    password: 'N355KdcSql',
+    host: 'skillmatcher_db_1',
+    port: 3306,
+    user: 'skillmatcher',
+    password: 'skillmatcher',
     database: 'skill_matcher'
 });
-
+/*
 con.connect(function(err) {
     if (err) throw err;
     console.log("Connected!");
 });
-
+*/
 module.exports = con;

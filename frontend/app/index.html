@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>Skill Matcher</title>
+        <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $.ajax({
+                    url: "http://192.168.99.100:3000/users",
+                    method: "GET",
+                    dataType: "json",
+                    crossDomain: true
+                }).done(function(data, textStatus, jqXHR) {
+                    $(data).each(function(index, elem) {
+                        var newRow = $('<tr>');
+                        newRow.append($('<td>').text(elem.id));
+                        newRow.append($('<td>').text(elem.personalNumber));
+                        newRow.append($('<td>').text(elem.email));
+                        newRow.append($('<td>').text(elem.status));
+                        
+                        $("table.users > tbody").append(newRow);
+                    });
+                }).fail(function(jqXHR, textStatus, errorThrown) {
+                    $("table.users").replaceWith("Error loading users: " + errorThrown);
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Hello World!</h1>
+        <h2>Users:</h2>
+        <table class="users">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Personal#</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                </tr>                
+            </thead>
+            <tbody></tbody>
+        </table>
+    </body>
+</html>
