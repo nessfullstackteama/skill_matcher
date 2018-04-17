@@ -2,10 +2,15 @@ version: '3'
 services:
   mysql:
     image: mysql:latest
+#    build: .
+#    restart: always
     volumes:
-      - .\mysql\var\lib\mysql:/var/lib/mysql:rw
+#      - .\data:/var/lib/mysql:rw
+      - .\schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
     environment:
       - MYSQL_ROOT_PASSWORD=N355Full5t4ck
-      - MYSQL_DATABASE=skill_matcher
+#      - MYSQL_DATABASE=skill_matcher
+      - MYSQL_USER=skillmatcher
+      - MYSQL_PASSWORD=skillmatcher
     ports:
-      - "32768:3306"
+      - 3306:3306
