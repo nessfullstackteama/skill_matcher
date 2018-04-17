@@ -13,7 +13,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema skill_matcher
 -- -----------------------------------------------------
---DROP SCHEMA IF EXISTS `skill_matcher` ;
+-- DROP SCHEMA IF EXISTS `skill_matcher` ;
 
 -- -----------------------------------------------------
 -- Schema skill_matcher
@@ -24,7 +24,7 @@ USE `skill_matcher` ;
 -- -----------------------------------------------------
 -- Table `skill_matcher`.`Permission`
 -- -----------------------------------------------------
---DROP TABLE IF EXISTS `skill_matcher`.`Permission` ;
+-- DROP TABLE IF EXISTS `skill_matcher`.`Permission` ;
 
 CREATE TABLE IF NOT EXISTS `skill_matcher`.`Permission` (
   `id` INT(11) NOT NULL,
@@ -37,7 +37,7 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `skill_matcher`.`Skill`
 -- -----------------------------------------------------
---DROP TABLE IF EXISTS `skill_matcher`.`Skill` ;
+-- DROP TABLE IF EXISTS `skill_matcher`.`Skill` ;
 
 CREATE TABLE IF NOT EXISTS `skill_matcher`.`Skill` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -59,7 +59,7 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `skill_matcher`.`User`
 -- -----------------------------------------------------
---DROP TABLE IF EXISTS `skill_matcher`.`User` ;
+-- DROP TABLE IF EXISTS `skill_matcher`.`User` ;
 
 CREATE TABLE IF NOT EXISTS `skill_matcher`.`User` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -76,7 +76,7 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `skill_matcher`.`UserGroup`
 -- -----------------------------------------------------
---DROP TABLE IF EXISTS `skill_matcher`.`UserGroup` ;
+-- DROP TABLE IF EXISTS `skill_matcher`.`UserGroup` ;
 
 CREATE TABLE IF NOT EXISTS `skill_matcher`.`UserGroup` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -90,7 +90,7 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `skill_matcher`.`UserGroupPermissions`
 -- -----------------------------------------------------
---DROP TABLE IF EXISTS `skill_matcher`.`UserGroupPermissions` ;
+-- DROP TABLE IF EXISTS `skill_matcher`.`UserGroupPermissions` ;
 
 CREATE TABLE IF NOT EXISTS `skill_matcher`.`UserGroupPermissions` (
   `userGroupId` INT(11) NOT NULL,
@@ -114,7 +114,7 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `skill_matcher`.`UserSkills`
 -- -----------------------------------------------------
---DROP TABLE IF EXISTS `skill_matcher`.`UserSkills` ;
+-- DROP TABLE IF EXISTS `skill_matcher`.`UserSkills` ;
 
 CREATE TABLE IF NOT EXISTS `skill_matcher`.`UserSkills` (
   `userId` INT(11) NOT NULL,
@@ -141,7 +141,7 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `skill_matcher`.`UserUserGroups`
 -- -----------------------------------------------------
---DROP TABLE IF EXISTS `skill_matcher`.`UserUserGroups` ;
+-- DROP TABLE IF EXISTS `skill_matcher`.`UserUserGroups` ;
 
 CREATE TABLE IF NOT EXISTS `skill_matcher`.`UserUserGroups` (
   `userId` INT(11) NOT NULL,
