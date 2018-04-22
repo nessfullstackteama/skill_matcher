@@ -1,0 +1,6 @@
+git
+matrix-auth
+workflow-aggregator
+docker-workflow
+credentials-binding
+docker-plugin
