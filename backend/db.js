@@ -1,10 +1,11 @@
-var mysql = require('mysql');
+const config = require('./config');
+const mysql = require('mysql');
 
-var con = mysql.createConnection({
-    host: 'skillmatcher_db_1',
-    port: 3306,
-    user: 'skillmatcher',
-    password: 'skillmatcher',
+const con = mysql.createConnection({
+    host: config.db.host, // 'skillmatcher_db_1',
+    port: config.db.port,
+    user: config.db.skillmatcher, //'skillmatcher',
+    password: config.db.password, // 'skillmatcher',
     database: 'skill_matcher'
 });
 /*
