@@ -6,7 +6,7 @@ const con = mysql.createConnection({
     port: config.db.port,
     user: config.db.skillmatcher, //'skillmatcher',
     password: config.db.password, // 'skillmatcher',
-    database: 'skill_matcher'
+    database: config.db.database //'skill_matcher'
 });
 /*
 con.connect(function(err) {
