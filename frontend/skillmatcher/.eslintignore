@@ -1,0 +1,10 @@
+build/
+coverage/
+etc/
+images/
+node/
+node_modules/
+.git/
+public/
+scripts/
+config/
