@@ -2,6 +2,7 @@ version: '3'
 services:
   jenkins-master:
     build: .
+    container_name: skill_matcher_ci
     image: jenkins/jenkins:latest
     environment:
       - JENKINS_USER=admin

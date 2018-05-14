@@ -1,4 +1,5 @@
 frontend:
+  container_name: skill_matcher_fe
   image: nginx:alpine
   volumes: 
     - .\app:/usr/share/nginx/html/

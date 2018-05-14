@@ -1,0 +1,19 @@
+node {
+    def app
+
+    stage('Clone repository') {
+        checkout scm
+    }
+
+    stage('Build image') {
+        dir('frontend') {
+            app = docker.build("nessfullstackteama/skill_matcher_fe:0.1.${env.BUILD_NUMBER}")
+        }
+    }
+
+    stage('Test image') {
+        app.inside {
+            sh 'curl -i http://127.0.0.1/nginx_status'
+        }
+    }
+}

@@ -1,0 +1,19 @@
+node {
+    def app
+
+    stage('Clone repository') {
+        checkout scm
+    }
+
+    stage('Build image') {
+        dir('database') {
+            app = docker.build("nessfullstackteama/skill_matcher_db:0.1.${env.BUILD_NUMBER}")
+        }
+    }
+
+    stage('Test image') {
+        app.inside {
+            sh 'mysql -h localhost -u root -ppassword -e"quit"'
+        }
+    }
+}
