@@ -15,7 +15,7 @@ node {
                 VERSION = "0.1.${env.BUILD_NUMBER}"
             }
             //app = docker.build("${REPO}:${VERSION}")
-            app = docker.build("nessfullstackteama/skill_matcher_db:0.1.${env.BUILD_NUMBER}")
+            app = docker.build("${REPO}:0.1.${env.BUILD_NUMBER}")
             sh "docker tag nessfullstackteama/skill_matcher_db:0.1.${env.BUILD_NUMBER} nessfullstackteama/skill_matcher_db:latest"
 /*
             post {
