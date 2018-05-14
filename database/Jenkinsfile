@@ -1,14 +1,28 @@
 node {
+    environment {
+        REPO = 'nessfullstackteama/skill_matcher_db'
+        TAG = 'latest' //"0.1.${env.BUILD_NUMBER}"
+    }
     def app
 
     stage('Clone repository') {
         checkout scm
+        COMMIT = "${GIT_COMMIT.substring(0,8)}"
     }
 
     stage('Build image') {
         dir('database') {
-            app = docker.build("nessfullstackteama/skill_matcher_db:0.1.${env.BUILD_NUMBER}")
-            docker.tag("nessfullstackteama/skill_matcher_db:0.1.${env.BUILD_NUMBER}", "nessfullstackteama/skill_matcher_db:latest")
+            steps {
+                app = docker.build("${REPO}:${COMMIT}")
+            }
+            post {
+                success {
+                    echo 'Tag image'
+                    sh "docker tag ${REPO}:${COMMIT} ${REPO}:${TAG}"
+                }
+            }
+            
+            //docker.tag("nessfullstackteama/skill_matcher_db:0.1.${env.BUILD_NUMBER}", "nessfullstackteama/skill_matcher_db:latest")
             //docker.build("nessfullstackteama/skill_matcher_db:latest")
         }
     }
