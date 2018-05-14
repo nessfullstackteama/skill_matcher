@@ -16,13 +16,13 @@ node {
             }
             //app = docker.build("${REPO}:${VERSION}")
             app = docker.build("nessfullstackteama/skill_matcher_db:0.1.${env.BUILD_NUMBER}")
-
+/*
             post {
                 success {
                     echo 'Tag image'
                     sh "docker tag ${REPO}:${VERSION} ${REPO}:${TAG}"
                 }
-            }
+            }*/
             
             //docker.tag("nessfullstackteama/skill_matcher_db:0.1.${env.BUILD_NUMBER}", "nessfullstackteama/skill_matcher_db:latest")
             //docker.build("nessfullstackteama/skill_matcher_db:latest")
