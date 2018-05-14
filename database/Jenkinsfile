@@ -1,11 +1,7 @@
 node {
     def app
 
-    environment {
-        REPO = 'nessfullstackteama/skill_matcher_db'
-        TAG = 'latest' //"0.1.${env.BUILD_NUMBER}"
-        VERSION = "0.1.${env.BUILD_NUMBER}"
-    }
+    
     
     stage('Clone repository') {
         checkout scm
@@ -13,6 +9,11 @@ node {
 
     stage('Build image') {
         dir('database') {
+            environment {
+                REPO = 'nessfullstackteama/skill_matcher_db'
+                TAG = 'latest' //"0.1.${env.BUILD_NUMBER}"
+                VERSION = "0.1.${env.BUILD_NUMBER}"
+            }
             //app = docker.build("${REPO}:${VERSION}")
             app = docker.build("nessfullstackteama/skill_matcher_db:0.1.${env.BUILD_NUMBER}")
 
