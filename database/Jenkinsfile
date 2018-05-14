@@ -13,7 +13,7 @@ node {
 
     stage('Test image') {
         app.inside {
-            sh 'mysql -h localhost -u root -pN355Full5t4ck -e"quit"'
+            sh 'mysql -h 127.0.0.1 -u root -pN355Full5t4ck -e"quit"'
         }
     }
 }
