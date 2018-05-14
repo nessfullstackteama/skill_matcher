@@ -1,0 +1,42 @@
+version: "3"
+services:
+  backend:
+    container_name: skill_matcher_be
+    image: skill_matcher_be:latest
+    ports:
+      - "3000:3000"
+    networks:
+      - rest-net
+    depends_on:
+      - db
+    environment: 
+      - MYSQLHOST=skill_matcher_db
+      - MYSQLUSER=skillmatcher
+      - MYSQLPASSWORD=skillmatcher
+      - MYSQLDATABASE=skill_matcher
+  db:
+  container_name: skill_matcher_db
+    image: skill_matcher_db:latest
+    volumes:
+      - .\database\schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+    environment:
+      - MYSQL_ROOT_PASSWORD=N355Full5t4ck
+      - MYSQL_DATABASE=skill_matcher
+      - MYSQL_USER=skillmatcher
+      - MYSQL_PASSWORD=skillmatcher
+    ports:
+      - "3306:3306"
+    networks:
+      - rest-net
+  frontend:
+  container_name: skill_matcher_fe
+    image: skill_matcher_fe:latest
+    volumes: 
+      - .\frontend\skillmatcher:/usr/share/nginx/html/
+    ports:
+      - "8888:80"
+    environment:
+      - NGINX_HOST=skillmatcher.ness
+      - NGINX_PORT=8888
+networks:
+  rest-net:
