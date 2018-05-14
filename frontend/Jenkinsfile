@@ -8,7 +8,7 @@ node {
     stage('Build image') {
         dir('frontend') {
             app = docker.build("nessfullstackteama/skill_matcher_fe:0.1.${env.BUILD_NUMBER}")
-            docker.build("nessfullstackteama/skill_matcher_fe:latest")
+            sh "docker tag nessfullstackteama/skill_matcher_fe:0.1.${env.BUILD_NUMBER} nessfullstackteama/skill_matcher_fe:latest"
         }
     }
 

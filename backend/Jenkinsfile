@@ -12,7 +12,7 @@ node {
          * docker build on the command line */
         dir('backend') {
             app = docker.build("nessfullstackteama/skill_matcher_be:0.1.${env.BUILD_NUMBER}")
-            docker.build("nessfullstackteama/skill_matcher_be:latest")
+            sh "docker tag nessfullstackteama/skill_matcher_be:0.1.${env.BUILD_NUMBER} nessfullstackteama/skill_matcher_be:latest"
         }
     }
 
