@@ -13,7 +13,8 @@ node {
 
     stage('Build image') {
         dir('database') {
-            app = docker.build("${REPO}:${VERSION}")
+            //app = docker.build("${REPO}:${VERSION}")
+            app = docker.build("nessfullstackteama/skill_matcher_db:0.1.${env.BUILD_NUMBER}")
 
             post {
                 success {
