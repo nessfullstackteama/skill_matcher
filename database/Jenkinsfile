@@ -8,16 +8,19 @@ node {
     stage('Build image') {
         dir('database') {
             app = docker.build("nessfullstackteama/skill_matcher_db:0.1.${env.BUILD_NUMBER}")
-            docker.build("nessfullstackteama/skill_matcher_db:latest")
+            docker.tag("nessfullstackteama/skill_matcher_db:0.1.${env.BUILD_NUMBER}", "nessfullstackteama/skill_matcher_db:latest")
+            //docker.build("nessfullstackteama/skill_matcher_db:latest")
         }
     }
 
     stage('Test image') {
         app.withRun('-e "MYSQL_ROOT_PASSWORD=N355Full5t4ck" -p 3306:3306') { c ->
             /* Wait until mysql service is up */
-            sh 'while ! mysqladmin ping -h0.0.0.0 --silent; do sleep 1; done'
+            //sh 'while ! mysqladmin ping -h0.0.0.0 --silent; do sleep 1; done'
             /* Run some tests which require MySQL */
-            sh 'make check'
+            //sh 'make check'
+
+            sh 'mysql -h 127.0.0.1 -u root -pN355Full5t4ck -e"quit"'
         }
         /*app.inside {
             sh 'mysql -h 127.0.0.1 -u root -pN355Full5t4ck -e"quit"'
