@@ -2,23 +2,23 @@ node {
     environment {
         REPO = 'nessfullstackteama/skill_matcher_db'
         TAG = 'latest' //"0.1.${env.BUILD_NUMBER}"
+        VERSION = "0.1.${env.BUILD_NUMBER}"
     }
     def app
 
     stage('Clone repository') {
         checkout scm
-        COMMIT = "${GIT_COMMIT.substring(0,8)}"
     }
 
     stage('Build image') {
         dir('database') {
             steps {
-                app = docker.build("${REPO}:${COMMIT}")
+                app = docker.build("${REPO}:${VERSION}")
             }
             post {
                 success {
                     echo 'Tag image'
-                    sh "docker tag ${REPO}:${COMMIT} ${REPO}:${TAG}"
+                    sh "docker tag ${REPO}:${VERSION} ${REPO}:${TAG}"
                 }
             }
             
