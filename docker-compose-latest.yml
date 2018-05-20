@@ -7,8 +7,6 @@ services:
       - "3000:3000"
     networks:
       - rest-net
-#    depends_on:
-#      - db
     environment: 
       - MYSQLHOST=skill_matcher_db
       - MYSQLUSER=skillmatcher
@@ -17,8 +15,6 @@ services:
   db:
     container_name: skill_matcher_db
     image: nessfullstackteama/skill_matcher_db:latest
-#    volumes:
-#      - .\database\schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
     environment:
       - MYSQL_ROOT_PASSWORD=N355Full5t4ck
       - MYSQL_DATABASE=skill_matcher

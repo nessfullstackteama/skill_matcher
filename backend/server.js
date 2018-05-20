@@ -29,6 +29,7 @@ server.listen(config.port, () => {
     console.log('%s listening at %s', server.name, server.url);
 
     require('./user/UserController')(server);
+    require('./user/SkillController')(server);
 });
 
 module.exports = server;
