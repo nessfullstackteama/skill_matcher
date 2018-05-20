@@ -2,7 +2,7 @@ frontend:
   container_name: skill_matcher_fe
   image: nginx:alpine
   volumes: 
-    - .\app:/usr/share/nginx/html/
+    - ./app:/usr/share/nginx/html/
   ports:
     - "8888:80"
   environment:
