@@ -30,6 +30,8 @@ server.listen(config.port, () => {
 
     require('./user/UserController')(server);
     require('./user/SkillController')(server);
+    require('./user/PermissionController')(server);
+    require('./user/UserGroupController')(server);
 });
 
 module.exports = server;

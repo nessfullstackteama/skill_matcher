@@ -55,7 +55,8 @@ module.exports = (server) => {
         var newUser = new User(
             req.body.personalNumber, 
             req.body.email, 
-            req.body.status);
+            req.body.status, 
+            null);
 
         db.query(
             'INSERT INTO `User` SET ?', 
