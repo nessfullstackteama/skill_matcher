@@ -26,7 +26,7 @@ module.exports = (server) => {
 
     server.get('/usergroups/:id', (req, res, next) => {
         db.query(
-            'SELECT `id`, `name` `UserGroup` WHERE `id` = ?', 
+            'SELECT `id`, `name` FROM `UserGroup` WHERE `id` = ?', 
             req.params.id, 
             (err, results, fields) => {
                 if (err) {
@@ -88,6 +88,45 @@ module.exports = (server) => {
                 }
 
                 res.send("User group was deleted.");
+            }
+        );
+    });
+
+    /* User Group Permissions */
+
+    server.get('/usergroups/:groupid/permissions', (req, res, next) => {
+        db.query(
+            'SELECT `p`.`id`, `p`.`name` FROM `Permission` `p` INNER JOIN `UserGroupPermissions` `u` WHERE `u`.`id` = ?', 
+            req.params.groupid, 
+            (err, results, fields) => {
+                if (err) {
+                    console.error(err);
+                    return next(new errors.InvalidContentError(`There was a problem finding the permissions: ${err.message}`, err));
+                }
+                
+                if (!results)
+                    return next(new errors.NotFoundError('No permissions found.'));
+
+                res.send(results);
+            }
+        );
+    });
+
+    server.get('/usergroups/:groupid/permissions/:id', (req, res, next) => {
+        db.query(
+            'SELECT `p`.`id`, `p`.`name` FROM `Permission` `p` INNER JOIN `UserGroupPermissions` `u` WHERE `u`.`id` = ? AND `p`.`id` = ?', 
+            req.params.groupid,
+            req.params.id, 
+            (err, results, fields) => {
+                if (err) {
+                    console.error(err);
+                    return next(new errors.InvalidContentError(`There was a problem finding the permission: ${err.message}`, err));
+                }
+                
+                if (!results)
+                    return next(new errors.NotFoundError('No permission found.'));
+
+                res.send(results);
             }
         );
     });
