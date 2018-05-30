@@ -1,5 +1,12 @@
 node {
     def app
+    
+    agent {
+        docker {
+            image 'node:10-alpine' 
+            args '-p 3000:3000' 
+        }
+    }
 
     stage('Clone repository') {
         checkout scm
@@ -11,7 +18,7 @@ node {
                 sh 'npm prune'
                 sh 'npm install'
             }
-            
+
             app = docker.build("nessfullstackteama/skill_matcher_fe:0.1.${env.BUILD_NUMBER}")
             sh "docker tag nessfullstackteama/skill_matcher_fe:0.1.${env.BUILD_NUMBER} nessfullstackteama/skill_matcher_fe:latest"
         }
