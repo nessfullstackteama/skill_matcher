@@ -7,6 +7,11 @@ node {
 
     stage('Build image') {
         dir('frontend') {
+            dir('app') {
+                sh 'npm prune'
+                sh 'npm install'
+            }
+            
             app = docker.build("nessfullstackteama/skill_matcher_fe:0.1.${env.BUILD_NUMBER}")
             sh "docker tag nessfullstackteama/skill_matcher_fe:0.1.${env.BUILD_NUMBER} nessfullstackteama/skill_matcher_fe:latest"
         }
