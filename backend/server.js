@@ -29,9 +29,9 @@ server.listen(config.port, () => {
     console.log('%s listening at %s', server.name, server.url);
 
     require('./user/UserController')(server);
-    require('./user/SkillController')(server);
-    require('./user/PermissionController')(server);
-    require('./user/UserGroupController')(server);
+    require('./skill/SkillController')(server);
+    require('./permission/PermissionController')(server);
+    require('./usergroup/UserGroupController')(server);
 });
 
 module.exports = server;

@@ -28,7 +28,7 @@ services:
     container_name: skill_matcher_fe
     image: nessfullstackteama/skill_matcher_fe:latest
     volumes: 
-      - ./frontend/skillmatcher/public:/usr/share/nginx/html/
+      - ./frontend/app:/usr/share/nginx/html/
     ports:
       - "8888:80"
     environment:
