@@ -16,9 +16,9 @@ services:
       - MYSQLDATABASE=skill_matcher
   db:
     container_name: skill_matcher_db
-    image: mysql/mysql-server:latest
+    image: mysql/mysql-server:5.7
     volumes:
-      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+      - .\database\schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
     environment:
       - MYSQL_ROOT_PASSWORD=N355Full5t4ck
       - MYSQL_DATABASE=skill_matcher
@@ -32,7 +32,7 @@ services:
     container_name: skill_matcher_fe
     image: nginx:alpine
     volumes: 
-      - ./frontend/app:/usr/share/nginx/html/
+      - .\frontend\app:/usr/share/nginx/html/
     ports:
       - "8888:80"
     environment:
