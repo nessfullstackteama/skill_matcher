@@ -1,4 +1,4 @@
-node {
+node('node') {
     def app
 
     stage('Clone repository') {
@@ -8,11 +8,8 @@ node {
     stage('Build image') {
         dir('frontend') {
             dir('app') {
-                withEnv(["PATH+NODE=${tool type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'}/bin"]) {
-                    sh 'npm prune'
-                    sh 'npm install'
-                }
-                
+                sh 'npm prune'
+                sh 'npm install'
             }
 
             app = docker.build("nessfullstackteama/skill_matcher_fe:0.1.${env.BUILD_NUMBER}")
