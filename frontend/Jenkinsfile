@@ -1,6 +1,12 @@
 node() {
     def app
 
+    stage('Initialize') {
+        echo 'Initializing...'
+        def node = tool name: 'Node-10.3.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+        env.PATH = "${node}/bin:${env.PATH}"
+    }
+
     stage('Clone repository') {
         checkout scm
     }
