@@ -9,10 +9,10 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x \
     && apt-get install -y nodejs build-essential \
     && apt-get install -y --no-install-recommends yarn
 
-RUN /usr/local/bin/install-plugins.sh git matrix-auth workflow-aggregator docker-workflow credentials-binding docker-plugin
+#RUN /usr/local/bin/install-plugins.sh git matrix-auth workflow-aggregator docker-workflow credentials-binding docker-plugin
 
-#COPY plugins.txt /usr/share/jenkins/plugins.txt
-#RUN /usr/local/bin/install-plugins.sh /usr/share/jenkins/plugins.txt
+COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
+RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
 # Skip initial setup
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false

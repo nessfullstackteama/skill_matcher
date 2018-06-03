@@ -4,3 +4,4 @@ workflow-aggregator
 docker-workflow
 credentials-binding
 docker-plugin
+nodejs
