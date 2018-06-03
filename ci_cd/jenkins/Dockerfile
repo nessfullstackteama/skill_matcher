@@ -2,12 +2,12 @@ FROM jenkins/jenkins:latest
 
 # Switch to root user
 USER root
-RUN apt-get update && apt-get install -y apt-transport-https
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN curl -sL https://deb.nodesource.com/setup_10.x \
-    && apt-get install -y nodejs build-essential \
-    && apt-get install -y --no-install-recommends yarn
+#RUN apt-get update && apt-get install -y apt-transport-https
+#RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+#RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+#RUN curl -sL https://deb.nodesource.com/setup_10.x \
+#    && apt-get install -y nodejs build-essential \
+#    && apt-get install -y --no-install-recommends yarn
 
 #RUN /usr/local/bin/install-plugins.sh git matrix-auth workflow-aggregator docker-workflow credentials-binding docker-plugin
 

@@ -1,24 +1,30 @@
-import jenkins.model.*
-import hudson.security.*
-import hudson.plugins.git.*
-import com.nirima.jenkins.plugins.docker.DockerCloud
-import com.nirima.jenkins.plugins.docker.DockerTemplate
-import com.nirima.jenkins.plugins.docker.DockerTemplateBase
-import com.nirima.jenkins.plugins.docker.launcher.AttachedDockerComputerLauncher
-import io.jenkins.docker.connector.DockerComputerAttachConnector
-import hudson.model.FreeStyleProject
+import jenkins.model.*;
+import hudson.security.*;
+import hudson.plugins.git.*;
+import hudson.model.*;
+import hudson.slaves.*;
+import hudson.tools.*;
+import jenkins.plugins.nodejs.*;
+import jenkins.plugins.nodejs.tools.*;
+//import com.nirima.jenkins.plugins.docker.DockerCloud
+//import com.nirima.jenkins.plugins.docker.DockerTemplate
+//import com.nirima.jenkins.plugins.docker.DockerTemplateBase
+//import com.nirima.jenkins.plugins.docker.launcher.AttachedDockerComputerLauncher
+//import io.jenkins.docker.connector.DockerComputerAttachConnector
+//import hudson.model.FreeStyleProject
 
-import hudson.model.Node.Mode
-import hudson.slaves.*
+//import hudson.model.Node.Mode
 
-import hudson.model.Item
-import hudson.util.PersistedList
-import jenkins.branch.*
-import jenkins.plugins.git.*
-import org.jenkinsci.plugins.workflow.multibranch.*
-import com.cloudbees.hudson.plugins.folder.*
-import org.jenkinsci.plugins.workflow.job.WorkflowJob
-import com.coravy.hudson.plugins.github.GithubProjectProperty
+//import hudson.model.Item
+//import hudson.util.PersistedList
+//import jenkins.branch.*
+//import jenkins.plugins.git.*
+//import org.jenkinsci.plugins.workflow.multibranch.*
+//import com.cloudbees.hudson.plugins.folder.*
+//import org.jenkinsci.plugins.workflow.job.WorkflowJob
+//import com.coravy.hudson.plugins.github.GithubProjectProperty
+
+
 
 def env = System.getenv()
 def jenkins = Jenkins.getInstance()
@@ -38,6 +44,20 @@ jenkins.save()
 /* Set number of executors */
 jenkins.setNumExecutors(2)
 
+/* Add Node.js installation */
+//def desc = jenkins.getDescriptor('jenkins.plugins.nodejs.tools.NodeJSInstallation')
+
+def nodejs_version = env.NODEJS_VERSION
+def desc = jenkins.getDescriptorByType(NodeJSInstallation.DescriptorImpl.class)
+
+def installations = [];
+def installer = new NodeJSInstaller(nodejs_version, "", 100)
+def installerProps = new InstallSourceProperty([installer])
+def installation = new NodeJSInstallation("latest", "", [installerProps])
+installations.push(installation)
+desc.setInstallations(installations.toArray(new NodeJSInstallation[0]))
+desc.save()
+jenkins.save()
 
 /* Set up Docker plugin*/
 // parameters

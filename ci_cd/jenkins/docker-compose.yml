@@ -6,6 +6,7 @@ services:
     environment:
       - JENKINS_USER=admin
       - JENKINS_PASS=admin
+      - NODEJS_VERSION=10.3.0
     volumes:
 #      - .\jenkins\var\jenkins_home:/var/jenkins_home:rw
       - ./jobs:/var/jenkins_home/jobs:rw
