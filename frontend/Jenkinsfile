@@ -1,7 +1,5 @@
 node {
     def app
-    env.NODEJS_HOME = "${tool 'Node 10.x'}"
-    env.PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
 
     stage('Clone repository') {
         checkout scm
@@ -10,8 +8,10 @@ node {
     stage('Build image') {
         dir('frontend') {
             dir('app') {
-                sh 'npm prune'
-                sh 'npm install'
+                withEnv(["PATH+NODE=${tool name: 'node-10.x'}/bin"]) {
+                    sh 'npm prune'
+                    sh 'npm install'
+                }
             }
 
             app = docker.build("nessfullstackteama/skill_matcher_fe:0.1.${env.BUILD_NUMBER}")
