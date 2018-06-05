@@ -16,7 +16,7 @@ node() {
         dir('frontend') {
             dir('app') {
                 //sh 'npm prune --no-bin-links'
-                sh 'npm install --no-bin-links --no-optional'
+                sh 'npm install --no-bin-links --no-optional -f'
             }
 
             app = docker.build("nessfullstackteama/skill_matcher_fe:0.1.${env.BUILD_NUMBER}")
