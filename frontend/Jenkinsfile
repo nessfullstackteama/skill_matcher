@@ -5,7 +5,7 @@ node() {
         echo 'Initializing...'
         def node = tool name: 'latest', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
         env.PATH = "${node}/bin:${env.PATH}"
-        deleteDir()
+        //deleteDir()
     }
 
     stage('Clone repository') {
